@@ -1001,23 +1001,6 @@ CREATE TABLE  `event` (
   PRIMARY KEY (`EVENT_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `event_archieve`;
-CREATE TABLE  `event` (
-  `EVENT_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `EVENT_TIMESTAMP` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `AGENT_ID_SENDER` int(10) unsigned NOT NULL DEFAULT '0',
-  `AGENT_ID_REC` int(10) unsigned NOT NULL DEFAULT '0',
-  `EVENT_DATA` mediumtext NOT NULL,
-  `OBJECT_ID` int(10) unsigned NOT NULL DEFAULT '0',
-  `STATUS_ID` int(10) unsigned NOT NULL DEFAULT '1',
-  `ACTION_ID` int(10) unsigned NOT NULL DEFAULT '0',
-  `MSG_ID` varchar(60) DEFAULT NULL,
-  `AGENT_MODE_ID` int(10) unsigned NOT NULL,
-  `CONTEXT_ID` int(10) unsigned NOT NULL,
-  `ZONE_ID` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`EVENT_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
-
 DROP TABLE IF EXISTS `event_actions`;
 CREATE TABLE  `event_actions` (
   `ACTION_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -1110,27 +1093,6 @@ CREATE TABLE  `request` (
   PRIMARY KEY (`REQUEST_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
-
-DROP TABLE IF EXISTS `request_archieve`;
-CREATE TABLE  `request` (
-  `REQUEST_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `REQUEST_MSG_ID` varchar(255) NOT NULL DEFAULT '',
-  `REQUEST_DATA` mediumtext NOT NULL,
-  `REQUEST_TIMESTAMP` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `STATUS_ID` int(10) unsigned NOT NULL DEFAULT '1',
-  `AGENT_ID_REQUESTER` int(10) unsigned NOT NULL DEFAULT '0',
-  `AGENT_ID_RESPONDER` int(10) unsigned NOT NULL DEFAULT '0',
-  `MAX_BUFFER_SIZE` varchar(255) NOT NULL DEFAULT '',
-  `VERSION` varchar(255) NOT NULL DEFAULT '',
-  `MSG_ID` varchar(60) DEFAULT NULL,
-  `AGENT_MODE_ID` int(10) unsigned NOT NULL,
-  `CONTEXT_ID` int(10) unsigned NOT NULL,
-  `ZONE_ID` int(10) unsigned NOT NULL,
-  `CANCEL_TIMESTAMP` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`REQUEST_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
-
 DROP TABLE IF EXISTS `response`;
 CREATE TABLE  `response` (
   `RESPONSE_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -1146,23 +1108,6 @@ CREATE TABLE  `response` (
   `ZONE_ID` int(10) unsigned NOT NULL,
   PRIMARY KEY (`RESPONSE_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
-
-DROP TABLE IF EXISTS `response_archieve`;
-CREATE TABLE  `response` (
-  `RESPONSE_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `REQUEST_MSG_ID` varchar(255) NOT NULL DEFAULT '',
-  `RESPONSE_DATA` mediumtext NOT NULL,
-  `NEXT_PACKET_NUM` int(10) unsigned NOT NULL DEFAULT '0',
-  `STATUS_ID` int(10) unsigned NOT NULL DEFAULT '1',
-  `AGENT_ID_REQUESTER` int(10) unsigned NOT NULL DEFAULT '0',
-  `AGENT_ID_RESPONDER` int(10) unsigned NOT NULL DEFAULT '0',
-  `MSG_ID` varchar(60) DEFAULT NULL,
-  `AGENT_MODE_ID` int(10) unsigned NOT NULL,
-  `CONTEXT_ID` int(10) unsigned NOT NULL,
-  `ZONE_ID` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`RESPONSE_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
-
 
 DROP TABLE IF EXISTS `sif_authentication_level`;
 CREATE TABLE  `sif_authentication_level` (
@@ -1289,7 +1234,6 @@ INSERT INTO `zone_authentication_type` (`zone_authentication_type_id`,`zone_auth
  (1,'Username and Password'),
  (2,'Certificate');
 
-DROP TABLE IF EXISTS `agent_requester`;
 DROP TABLE IF EXISTS `agent_requester`;
 CREATE TABLE `agent_requester` (
   `REQUESTER_ID` int(10) unsigned NOT NULL auto_increment,

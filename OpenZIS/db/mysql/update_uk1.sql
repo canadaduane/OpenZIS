@@ -1,8 +1,7 @@
 insert into data_object_group values (2121, 'Infrastructure', 212);
 insert into data_object values( 'SIF_LogEntry', 711, 2121, 212);
 
-DROP TABLE IF EXISTS `zit_log_archive `;
-
+DROP TABLE IF EXISTS `zit_log_archive`;
 CREATE TABLE  `zit_log_archive` (
   `LOG_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `CREATE_TIMESTAMP` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',

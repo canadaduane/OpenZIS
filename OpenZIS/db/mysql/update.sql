@@ -1,11 +1,6 @@
-
-ALTER TABLE `zit_admin` ADD COLUMN `ATTEMPTS` INT DEFAULT 0 AFTER `LAST_LOGIN`;
-
 ALTER TABLE `zit_admin` ADD COLUMN `LOCKOUT` TIMESTAMP DEFAULT  '2000-01-01 00:00:00' AFTER `ATTEMPTS`;
 
-
 DROP TABLE IF EXISTS `zit_log_archive`;
-
 CREATE TABLE  `zit_log_archive` (
   `LOG_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `CREATE_TIMESTAMP` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -55,27 +50,27 @@ SELECT ap.*, do.object_name, do.group_id, do.version_id
  WHERE ap.object_id = do.object_id;
 
 
-create or replace view agentresponderdataobjectagent_vw as
-select ar.*, a.source_id, do.version_id, do.object_name
-  from agent_responder ar,
+CREATE OR replace view agentresponderdataobjectagent_vw AS
+SELECT ar.*, a.source_id, do.version_id, do.object_name
+  FROM agent_responder ar,
        agent a,
        data_object do
- where ar.agent_id = a.agent_id
-    and ar.object_type_id = do.object_id;
+ WHERE ar.agent_id = a.agent_id
+   AND ar.object_type_id = do.object_id;
 
-create or replace view requestagent_vw as
-select request_id, version, max_buffer_size, source_id, request_msg_id, zone_id, context_id
-  from  request r,
+CREATE OR replace view requestagent_vw AS
+SELECT request_id, version, max_buffer_size, source_id, request_msg_id, zone_id, context_id
+  FROM  request r,
         agent a
-  where a.agent_id = r.agent_id_requester;
+  WHERE a.agent_id = r.agent_id_requester;
 
 
-create or replace view nummessage_vw as
-select zone_id, context_id, agent_id_rec agent_id from event where (status_id = 1 or status_id = 2)
-union all
-select zone_id, context_id, agent_id_responder agent_id from request where (status_id = 1 or status_id = 2)
-union all
-select zone_id, context_id, agent_id_requester agent_id from response where (status_id = 1 or status_id = 2); 
+CREATE OR REPLACE view nummessage_vw AS
+SELECT zone_id, context_id, agent_id_rec agent_id FROM event WHERE (status_id = 1 OR status_id = 2)
+UNION ALL
+SELECT zone_id, context_id, agent_id_responder agent_id FROM request WHERE (status_id = 1 OR status_id = 2)
+UNION ALL
+SELECT zone_id, context_id, agent_id_requester agent_id FROM response WHERE (status_id = 1 OR status_id = 2); 
 
 
 ALTER TABLE `zit_log` ADD INDEX zit_log_archived(`archived`);
